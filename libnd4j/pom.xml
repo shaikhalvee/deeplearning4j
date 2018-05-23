@@ -166,24 +166,24 @@
             </plugin>
 
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
+                <groupId>org.bytedeco</groupId>
+                <artifactId>javacpp</artifactId>
+                <version>${javacpp.version}</version>
 
                 <executions>
                     <execution>
                         <id>libnd4j.cpu.test.run</id>
                         <phase>test</phase>
                         <goals>
-                            <goal>exec</goal>
+                            <goal>build</goal>
                         </goals>
                         <configuration>
                             <skip>${maven.libnd4j.test.skip}</skip>
-                            <executable>bash</executable>
-                            <workingDirectory>${basedir}/tests_cpu</workingDirectory>
-                            <arguments>
-                                <argument>run_tests.sh</argument>
-                            </arguments>
+                            <buildCommand>
+                                <program>bash</program>
+                                <argument>${project.basedir}/tests_cpu/run_tests.sh</argument>
+                            </buildCommand>
+                            <workingDirectory>${project.basedir}</workingDirectory>
                         </configuration>
                     </execution>
                 </executions>
